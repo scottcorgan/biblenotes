@@ -52,13 +52,21 @@ angular.module('biblenotesApp')
       $scope.notes.push({
         created: new Date(),
         modified: new Date(),
-        title: '',
+        title: 'New Note',
         content: ''
       });
       
-      $('.note-title').focus();
-      $scope.currentNote = $scope.notes[$scope.notes.length-1];
-      // $scope.loadNote();
+      // $('.note-title').focus();
+      $scope.loadNote();
+    };
+    $scope.removeNote = function (note) {
+      if(!confirm('Are you sure you want to delete this note?')){
+        return false;
+      }
+      
+      var idx = $scope.notes.indexOf(note);
+      $scope.notes.splice(idx, 1);
+      editor.clear();
     };
     
   });
