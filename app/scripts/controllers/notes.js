@@ -32,7 +32,7 @@ angular.module('biblenotesApp')
       editor.on('change:composer', save);
     });
     
-    $scope.currentNote = {};
+    $scope.currentNote = null;
     $scope.newNote = {};
     $scope.orderBy = 'created';
     $scope.loadNote = function (note) {
@@ -66,6 +66,7 @@ angular.module('biblenotesApp')
       
       var idx = $scope.notes.indexOf(note);
       $scope.notes.splice(idx, 1);
+      $scope.currentNote = null
       editor.clear();
     };
     

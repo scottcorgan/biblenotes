@@ -27,17 +27,19 @@
     <div class="grid rows split50">
       
       <div class="bar content-header note-header">
-        <div class="pull-right">
-          <a href=""><i class="icon-share icon-white"></i></a> &nbsp;
-          <a href="" ng-click="removeNote(note)"><i class="icon-trash icon-white"></i></a> &nbsp;
-          <a href=""><i class="icon-resize-full icon-white"></i></a>
+        <div ng-show="currentNote">
+          <div class="pull-right">
+            <a href=""><i class="icon-share icon-white"></i></a> &nbsp;
+            <a href="" ng-click="removeNote(note)"><i class="icon-trash icon-white"></i></a> &nbsp;
+            <a href=""><i class="icon-resize-full icon-white"></i></a>
+          </div>
+          <input type="text" class="note-title" ng-model="currentNote.title"></input>
         </div>
-        <input type="text" class="note-title" ng-model="currentNote.title"></input>
       </div>
       
       <div class="content">
         <div class="grid rows split50">
-          <div id="note-taker-toolbar" class="bar toolbar">
+          <div id="note-taker-toolbar" class="bar toolbar" ng-show="currentNote">
             <div class="formatter">
               <a href=""><i class="icon-bold"></i></a>
               <a href=""><i class="icon-italic"></i></a>
