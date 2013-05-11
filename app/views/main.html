@@ -1,0 +1,69 @@
+<div class="grid columns split350">
+  
+  <section class="bar note-list">
+    <div class="grid rows split50">
+      <div class="bar content-header list-header">
+        Some List
+        <a href="" class="add pull-right" ng-click="composeNewNote()"><span class="icon-pencil icon-white"></span></a>
+      </div>
+      <div class="content">
+        <div class="search">
+          <input type="text" placeholder="Search..." ng-model="noteListFilter">
+        </div>
+        <ul class="list">
+          <li ng-repeat="note in notes | filter:noteListFilter| orderBy:orderBy:true" ng-click="loadNote(note)" ng-class="isActiveNote(note)">
+            <h3>{{note.title}}</h3>
+            <small>tags here</small>
+          </li>
+          <li ng-show="notes.length == undefined">
+            Loading ...
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <section class="content note">
+    <div class="grid rows split50">
+      
+      <div class="bar content-header note-header">
+        <div class="pull-right">
+          <a href=""><i class="icon-resize-full icon-white"></i></a>
+        </div>
+        <input type="text" class="note-title" ng-model="currentNote.title"></input>
+      </div>
+      
+      <div class="content">
+        <div class="grid rows split50">
+          <div id="note-taker-toolbar" class="bar toolbar">
+            <div class="formatter">
+              <a href=""><i class="icon-bold"></i></a>
+              <a href=""><i class="icon-italic"></i></a>
+              <span class="divider"></span>
+              <a href=""><i class="icon-align-left"></i></a>
+              <a href=""><i class="icon-align-center"></i></a>
+              <a href=""><i class="icon-align-right"></i></a>
+              <a href=""><i class="icon-align-justify"></i></a>
+              <span class="divider"></span>
+              <a href=""><i class="icon-list"></i></a>
+              <a href=""><i class="icon-list"></i></a>
+              <a href=""><i class="icon-indent-left"></i></a>
+              <a href=""><i class="icon-indent-right"></i></a>
+              <span class="divider"></span>
+            </div>
+          </div>
+          
+          <div class="content">
+            <div class="note-content">
+              
+              <textarea id="note-taker"></textarea>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  
+</div>

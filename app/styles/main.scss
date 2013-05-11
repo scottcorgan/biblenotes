@@ -1,0 +1,161 @@
+$red: #e85959;
+$light-gray: rgba(0,0,0,0.05);
+
+* {
+  box-sizing:border-box;
+}
+
+body{
+  // font-family: 'Montserrat', sans-serif;
+}
+
+.btn{
+  border:0;
+  border-radius:2px;
+  background:$light-gray;
+  text-shadow:none;
+  padding:8px 21px;
+  
+  &:active{
+    box-shadow:none;
+  }
+  
+}
+
+.content-header{
+  background:#222;
+  // border-left:1px solid rgba(255,255,255,0.2);
+  color:#fff;
+  padding:0 20px;
+  position:relative;
+}
+
+.note-list{
+  .list-header{
+    padding-right:0;
+    
+    .add{
+      background:$red;
+      height:50px;
+      display:inline-block;
+      text-align:center;
+      width:50px;
+    }
+  }
+
+  .content{
+    border-right:1px solid $light-gray;
+    border-left:1px solid $light-gray;
+  }
+  
+  .search{
+    border-bottom:1px solid $light-gray;
+    
+    input{
+      border:none;
+      height:50px;
+      margin: 0;
+      padding:0 20px;
+      width:100%;
+      
+      &:focus{
+        outline: none;
+        box-shadow:none;
+      }
+    }
+  }
+  
+  .list{
+    border-bottom:1px solid $light-gray;
+    margin:0;
+    padding:0;
+    
+    li{
+      border-top:1px solid $light-gray;
+      cursor:pointer;
+      padding:10px 20px;
+      
+      &:first-child{
+        border-top:none;
+      }
+      
+      &:hover{
+        background:$light-gray;
+      }
+      
+      &.active{
+        background:#f7f7f7;
+      }
+    }
+    
+    h3{
+      font-size:14px;
+      line-height:21px;
+      margin:0;
+    }
+    
+    small{
+      color:#888;
+      font-size:12px;
+    }
+  }
+}
+
+.note{
+  
+  .toolbar{
+    border-bottom:1px solid $light-gray;
+    padding:0 20px;
+    
+    .formatter{
+      height:50px;
+      overflow:hidden;
+      
+      i{
+        margin-right:2px;
+      }
+      
+      .divider{
+        border-left:1px solid $light-gray;
+        display:inline-block;
+        height:100%;
+        margin:0 18px 0 15px;
+        vertical-align:middle;
+        width:1px;
+      }
+    }
+  }
+  
+  .note-content{
+    height:100%;
+  }
+  
+  .note-title{
+    border:none;
+    background:none;
+    color:#fff;
+    height:auto;
+    line-height:normal;
+    margin:0;
+    padding:0;
+    
+    &:focus{
+      box-shadow:none;
+      outline:none;
+    }
+  }
+  
+  #note-taker{
+    border:none;
+    box-shadow:none;
+    font-family:'Cousine';
+    height:100%;
+    resize:none;
+    outline: none;
+    width:100%;
+  }
+}
+
+.note-taker-composer{
+  font-family:'Cousine';
+}
