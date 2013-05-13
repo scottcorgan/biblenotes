@@ -1,3 +1,5 @@
+@import 'note-taker';
+
 $red: #e85959;
 $light-gray: rgba(0,0,0,0.05);
 
@@ -6,7 +8,7 @@ $light-gray: rgba(0,0,0,0.05);
 }
 
 body{
-  // font-family: 'Montserrat', sans-serif;
+  color:#333;
 }
 
 .btn{
@@ -20,6 +22,10 @@ body{
     box-shadow:none;
   }
   
+  &.primary{
+    background:$red;
+    color:#fff;
+  }
 }
 
 .content-header{
@@ -70,6 +76,10 @@ body{
     margin:0;
     padding:0;
     
+    &.empty{
+      border-bottom:none;
+    }
+    
     li{
       border-top:1px solid $light-gray;
       cursor:pointer;
@@ -86,6 +96,8 @@ body{
       &.active{
         background:#f7f7f7;
       }
+      
+      
     }
     
     h3{
@@ -98,6 +110,15 @@ body{
       color:#888;
       font-size:12px;
     }
+  }
+}
+
+.list-emtpy{
+  padding:20px;
+  
+  .primary{
+    margin:0 auto;
+    width:100%;
   }
 }
 
@@ -149,7 +170,7 @@ body{
   #note-taker{
     border:none;
     box-shadow:none;
-    font-family:'Cousine';
+    font-family:'Cousine', Helvetica;
     height:100%;
     resize:none;
     outline: none;

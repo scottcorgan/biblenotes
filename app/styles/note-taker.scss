@@ -1,0 +1,15 @@
+.redactor_box{
+  border:none;
+  height:100%;
+  
+  .redactor_editor{
+    height:100%;
+    box-sizing:border-box;
+    font-family:'Cousine', Helvetica !important;
+    padding:20px !important;
+    
+    *{
+      font-family:'Cousine', Helvetica !important;
+    }
+  }
+}

@@ -2,34 +2,27 @@
 
 angular.module('biblenotesApp')
   .controller('NotesCtrl', function ($scope, angularFire) {
-    // TODO: Need to turn this into a directive
-     var editor = new wysihtml5.Editor("note-taker", { // id of textarea element
-       // toolbar:      "note-taker-toolbar", // id of toolbar element
-       composerClassName: 'note-taker-composer',
-       parserRules:  wysihtml5ParserRules // defined in parser rules set 
-     });
-    
-    //
-    
-    
     var url = 'https://biblenotes.firebaseio.com/scottcorgan/notes';
     var notes = $scope.notes = angularFire(url, $scope, 'notes');
+    var $noteTaker = $('#note-taker');
     
     notes.then(function () {
-      $scope.loadNote();
-      
       var save = function () {
         $scope.$apply(function () {
-          var text = editor.getValue();
+          var text = $noteTaker.getCode();
           $scope.currentNote.content = text;
           console.log('saved');
         });
       }
       
-      // Save on blur and new word
-      // TODO: save ever second as well if not already saved
-      editor.on('newword:composer', save);
-      editor.on('change:composer', save);
+      $noteTaker.redactor({
+        toolbar: false,
+        keyupCallback: _.throttle(function () {
+          save();
+        }, 1000)
+      });
+      
+      $scope.loadNote();
     });
     
     $scope.currentNote = null;
@@ -41,7 +34,7 @@ angular.module('biblenotesApp')
       }
       
       $scope.currentNote = note;
-      editor.setValue(note.content);
+      $noteTaker.setCode(note.content);
     };
     $scope.isActiveNote = function (note) {
       if(note === $scope.currentNote){
@@ -66,8 +59,8 @@ angular.module('biblenotesApp')
       
       var idx = $scope.notes.indexOf(note);
       $scope.notes.splice(idx, 1);
-      $scope.currentNote = null
-      editor.clear();
+      $scope.currentNote = null;
+      $noteTaker.setCode('');
     };
     
   });
