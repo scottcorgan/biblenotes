@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('biblenotesApp')
-  .controller('NotesCtrl', function ($scope, angularFire) {
+  .controller('NotesCtrl', function ($scope, angularFire, $timeout) {
     var url = 'https://biblenotes.firebaseio.com/scottcorgan/notes';
     var notes = $scope.notes = angularFire(url, $scope, 'notes');
     var $noteTaker = $('#note-taker');
@@ -20,22 +20,24 @@ angular.module('biblenotesApp')
       
       $scope.currentNote = note;
     };
+    
     $scope.isActiveNote = function (note) {
       if(note === $scope.currentNote){
         return 'active';
       }
     };
+    
     $scope.composeNewNote = function () {
-      $scope.notes.push({
+      var idx = $scope.notes.push({
         created: new Date(),
         modified: new Date(),
-        title: 'New Note',
+        title: '',
         content: ''
       });
       
-      // $('.note-title').focus();
       $scope.loadNote();
     };
+    
     $scope.removeNote = function (note) {
       if(!confirm('Are you sure you want to delete this note?')){
         return false;
@@ -45,8 +47,11 @@ angular.module('biblenotesApp')
       $scope.notes.splice(idx, 1);
       $scope.currentNote = null;
     };
+    
     $scope.saveFromEditor = function (content) {
-      $scope.currentNote.content = content;
+      $scope.$apply(function () {
+        $scope.currentNote.content = content;
+      });
     }
     
   });

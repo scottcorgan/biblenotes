@@ -6,6 +6,7 @@ angular.module('biblenotesApp')
       restrict: 'A',
       scope:{
         editorContent: '=textEditor',
+        hideWidth: '=',
         save: '&'
       },
       link: function postLink(scope, element, attrs) {
@@ -19,13 +20,20 @@ angular.module('biblenotesApp')
           }, 1000)
         });
         
-        element.blur();
-        
         scope.$watch('editorContent', function (content) {
           content = content || '';
           element.setCode(content);
         });
         
+        scope.$watch('hideWidth', function (val) {
+          var $el = $('.redactor_box');
+          
+          if (val) {
+            return $el.show();
+          }
+          
+          $el.hide();
+        });
       }
     };
   });
