@@ -1,38 +1,41 @@
 'use strict';
 
 angular.module('biblenotesApp')
-  .directive('textEditor', function () {
+  .directive('textEditor', function ($timeout) {
     return {
       restrict: 'A',
       scope:{
-        editorContent: '=textEditor',
-        hideWidth: '=',
-        save: '&'
+        model: '=textEditor',
       },
       link: function postLink(scope, element, attrs) {
+        var applied = false;
+        
         element.redactor({
           toolbar: false,
           source: false,
           focus: false,
           tabindex: 2,
           keyupCallback: _.throttle(function (obj, evt) {
-            scope.save({content: element.getCode()});
+            scope.$apply(function () {
+              applied = true;
+              scope.model = element.getCode();
+              
+              // Reset the applied flag
+              $timeout(function () {
+                applied = false;
+              }, 0);
+            });
           }, 1000)
         });
         
-        scope.$watch('editorContent', function (content) {
-          content = content || '';
-          element.setCode(content);
-        });
-        
-        scope.$watch('hideWidth', function (val) {
-          var $el = $('.redactor_box');
-          
-          if (val) {
-            return $el.show();
+        scope.$watch('model', function (content) {
+          // We don't want to update if there is not content
+          // or of the content was just applied
+          if (!content || applied) {
+            return;
           }
           
-          $el.hide();
+          element.setCode(content);
         });
       }
     };

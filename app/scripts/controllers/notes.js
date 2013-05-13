@@ -46,12 +46,5 @@ angular.module('biblenotesApp')
       var idx = $scope.notes.indexOf(note);
       $scope.notes.splice(idx, 1);
       $scope.currentNote = null;
-    };
-    
-    $scope.saveFromEditor = function (content) {
-      $scope.$apply(function () {
-        $scope.currentNote.content = content;
-      });
-    }
-    
+    };    
   });
