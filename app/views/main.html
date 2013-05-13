@@ -31,7 +31,7 @@
       
       <div class="bar content-header note-header">
         <div ng-show="currentNote">
-          <input type="text" class="note-title" ng-model="currentNote.title" placeholder="Untitled Note..."></input>
+          <input type="text" class="note-title" ng-model="currentNote.title" placeholder="Untitled Note..." tabindex="1"></input>
         </div>
       </div>
       
@@ -62,9 +62,7 @@
           
           <div class="content">
             <div class="note-content">
-              
-              <textarea id="note-taker"></textarea>
-              
+              <textarea id="note-taker" text-editor='currentNote.content' save="saveFromEditor(content)"></textarea>              
             </div>
           </div>
         </div>

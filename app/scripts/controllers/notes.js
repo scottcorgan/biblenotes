@@ -7,21 +7,6 @@ angular.module('biblenotesApp')
     var $noteTaker = $('#note-taker');
     
     notes.then(function () {
-      var save = function () {
-        $scope.$apply(function () {
-          var text = $noteTaker.getCode();
-          $scope.currentNote.content = text;
-          console.log('saved');
-        });
-      }
-      
-      $noteTaker.redactor({
-        toolbar: false,
-        keyupCallback: _.throttle(function () {
-          save();
-        }, 1000)
-      });
-      
       $scope.loadNote();
     });
     
@@ -34,7 +19,6 @@ angular.module('biblenotesApp')
       }
       
       $scope.currentNote = note;
-      $noteTaker.setCode(note.content);
     };
     $scope.isActiveNote = function (note) {
       if(note === $scope.currentNote){
@@ -60,7 +44,9 @@ angular.module('biblenotesApp')
       var idx = $scope.notes.indexOf(note);
       $scope.notes.splice(idx, 1);
       $scope.currentNote = null;
-      $noteTaker.setCode('');
     };
+    $scope.saveFromEditor = function (content) {
+      $scope.currentNote.content = content;
+    }
     
   });
