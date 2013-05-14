@@ -13,6 +13,7 @@ angular.module('biblenotesApp')
     $scope.currentNote = null;
     $scope.newNote = {};
     $scope.orderBy = 'created';
+    $scope.activeIndex = 0;
     $scope.loadNote = function (note) {
       if (!note){
         note = $scope.notes[$scope.notes.length-1];
@@ -46,5 +47,5 @@ angular.module('biblenotesApp')
       var idx = $scope.notes.indexOf(note);
       $scope.notes.splice(idx, 1);
       $scope.currentNote = null;
-    };    
+    };
   });

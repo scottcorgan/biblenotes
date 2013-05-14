@@ -11,7 +11,7 @@
           <input type="text" placeholder="Search..." ng-model="noteListFilter">
         </div>
         <ul class="list" ng-hide="notes.length == 0">
-          <li ng-repeat="note in notes | filter:noteListFilter| orderBy:orderBy:true" ng-click="loadNote(note)" ng-class="isActiveNote(note)">
+          <li ng-repeat="note in notes | filter:noteListFilter| orderBy:orderBy:true" ng-click="loadNote(note)" ng-class="{active: note == currentNote}">
             <h3>{{note.title}}</h3>
             <small>tags here</small>
           </li>
@@ -35,10 +35,8 @@
         </div>
       </div>
       
-      <div class="content">
-          <div class="note-content">
-            <textarea id="note-taker" text-editor='currentNote.content'></textarea>              
-          </div>
+      <div class="content note-content">
+          <textarea id="note-taker" text-editor='currentNote.content'></textarea>              
       </div>
       
     </div>

@@ -30,6 +30,12 @@
       
       a{
         margin-top:13px;
+        
+        &.redactor_act,
+        &:hover{
+          background-color:#fff;
+          border-color:#ddd;
+        }
       }
     }
     
@@ -39,5 +45,12 @@
       height:50px;
     }
   }
-  
+}
+
+#redactor_modal{
+  background:#fff !important;
+  border:1px solid $light-gray;
+  border-radius:0;
+  // box-shadow:0 0 300px rgba(0,0,0,0.2);
+  box-shadow:none;
 }
