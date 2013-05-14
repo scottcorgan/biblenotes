@@ -1,7 +1,9 @@
-@import 'note-taker';
-
 $red: #e85959;
 $light-gray: rgba(0,0,0,0.05);
+
+
+@import 'note-taker';
+
 
 * {
   box-sizing:border-box;
@@ -59,7 +61,7 @@ body{
     
     input{
       border:none;
-      height:50px;
+      height:49px;
       margin: 0;
       padding:0 20px;
       width:100%;

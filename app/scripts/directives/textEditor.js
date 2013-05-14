@@ -9,13 +9,7 @@ angular.module('biblenotesApp')
       },
       link: function postLink(scope, element, attrs) {
         var applied = false;
-        
-        element.redactor({
-          toolbar: false,
-          source: false,
-          focus: false,
-          tabindex: 2,
-          keyupCallback: _.throttle(function (obj, evt) {
+        var save = _.throttle(function (obj, evt) {
             scope.$apply(function () {
               applied = true;
               scope.model = element.getCode();
@@ -26,6 +20,16 @@ angular.module('biblenotesApp')
               }, 0);
             });
           }, 1000)
+        
+        element.redactor({
+          // toolbar: false,
+          source: false,
+          focus: false,
+          tabindex: 2,
+          autoresize: false,
+          keyupCallback: function (obj, evt) {
+            save(obj, evt);
+          }
         });
         
         scope.$watch('model', function (content) {

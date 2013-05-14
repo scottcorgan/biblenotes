@@ -1,15 +1,43 @@
 .redactor_box{
   border:none;
   height:100%;
+  position:relative;
   
   .redactor_editor{
-    height:100%;
+    height:calc(100% - 50px) !important;
     box-sizing:border-box;
     font-family:'Cousine', Helvetica !important;
     padding:20px !important;
+    overflow:auto;
     
     *{
       font-family:'Cousine', Helvetica !important;
     }
   }
+  
+  .redactor_toolbar{
+    background:#fff;
+    border-color:$light-gray;
+    box-sizing:border-box;
+    height:50px !important;
+    width:100%;
+    
+    li{
+      box-sizing:border-box;
+      height:100%;
+      line-height:50px !important;
+      padding:0 3px;
+      
+      a{
+        margin-top:13px;
+      }
+    }
+    
+    .redactor_separator{
+      border-left:none;
+      border-right-color:$light-gray;
+      height:50px;
+    }
+  }
+  
 }
