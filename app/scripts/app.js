@@ -10,7 +10,8 @@ angular.module('biblenotesApp', ['firebase'])
         controller: 'NotesCtrl'
       })
       .when('/bible', {
-        tempalteUrl: 'views/bible.html'
+        templateUrl: 'views/bible.html',
+        controller: 'BibleCtrl'
       })
       .otherwise({
         redirectTo: '/notes'

@@ -4,7 +4,6 @@ angular.module('biblenotesApp')
   .controller('NotesCtrl', function ($scope, angularFire, $timeout) {
     var url = 'https://biblenotes.firebaseio.com/scottcorgan/notes';
     var notes = $scope.notes = angularFire(url, $scope, 'notes');
-    var $noteTaker = $('#note-taker');
     
     notes.then(function () {
       $scope.loadNote();
@@ -14,6 +13,7 @@ angular.module('biblenotesApp')
     $scope.newNote = {};
     $scope.orderBy = 'created';
     $scope.activeIndex = 0;
+    
     $scope.loadNote = function (note) {
       if (!note){
         note = $scope.notes[$scope.notes.length-1];
@@ -47,5 +47,9 @@ angular.module('biblenotesApp')
       var idx = $scope.notes.indexOf(note);
       $scope.notes.splice(idx, 1);
       $scope.currentNote = null;
+    };
+    
+    $scope.textEditorChange = function (content, obj) {
+      // This is where we will do the scripture detection
     };
   });

@@ -1,0 +1,30 @@
+.bible-passage{
+  font:16px/26px 'Cousine', Helvetica;
+  height:100%;
+  margin:0;
+  width:100%;
+  
+  & > aside{
+    border-left:1px solid $light-gray;
+    height:100%;
+    padding:40px;
+  }
+  
+  .content{
+    border-left:1px solid $light-gray;
+    height:100%;
+    overflow:auto;
+    
+    h3{
+      padding:0 0 30px;
+    }
+    
+    p{
+      padding-bottom:20px;
+    }
+    
+    .passage{
+      padding:40px 100px;
+    }
+  }
+}

@@ -1,7 +1,6 @@
 $red: #e85959;
 $light-gray: rgba(0,0,0,0.05);
 
-
 @import 'note-taker';
 
 
@@ -182,3 +181,6 @@ body{
 .note-taker-composer{
   font-family:'Cousine';
 }
+
+
+@import 'bible-passage';

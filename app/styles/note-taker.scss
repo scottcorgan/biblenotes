@@ -20,13 +20,14 @@
     border-color:$light-gray;
     box-sizing:border-box;
     height:50px !important;
+    padding-left:10px !important;
     width:100%;
     
     li{
       box-sizing:border-box;
       height:100%;
       line-height:50px !important;
-      padding:0 3px;
+      padding:0 4px;
       
       a{
         margin-top:13px;

@@ -6,6 +6,7 @@ angular.module('biblenotesApp')
       restrict: 'A',
       scope:{
         model: '=textEditor',
+        textEditorChange: '&'
       },
       link: function postLink(scope, element, attrs) {
         var applied = false;
@@ -32,9 +33,11 @@ angular.module('biblenotesApp')
                     'image', 'video', 'file', 'table', 'link', '|',
                     'fontcolor', 'backcolor', 'horizontalrule', 'html', ],
           execCommandCallback: function (obj, evt) {
+            scope.textEditorChange({content: element.getCode(), obj: obj});
             save(obj, evt);
           },
           keyupCallback: function (obj, evt) {
+            scope.textEditorChange({content: element.getCode(), obj: obj});
             save(obj, evt);
           }
         });
