@@ -29,7 +29,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="grid columns split100">
+    <div class="grid columns split100" ng-class="{collapse: location.path() == '/login'}" ng-controller="AppCtrl">
       <div class="bar main-nav">
         <br>
         <center>
@@ -43,6 +43,7 @@
     </div>
     
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-auth-client.js'></script>
     <script src="components/jquery/jquery.js"></script>
     <script src="components/angular/angular.js"></script>
 
@@ -56,6 +57,11 @@
     <script src="scripts/filters/truncate.js"></script>
     <script src="scripts/services/genesis.js"></script>
     <script src="scripts/controllers/Bible.js"></script>
+    <script src="scripts/controllers/Login.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/services/Notes.js"></script>
+    <script src="scripts/services/User.js"></script>
+    <script src="scripts/services/safeApply.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

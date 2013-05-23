@@ -1,19 +1,31 @@
 'use strict';
 
 angular.module('biblenotesApp')
-  .controller('NotesCtrl', function ($scope, angularFire, $timeout) {
-    var url = 'https://biblenotes.firebaseio.com/scottcorgan/notes';
-    var notes = $scope.notes = angularFire(url, $scope, 'notes');
-    
-    notes.then(function () {
-      $scope.loadNote();
-    });
+  .controller('NotesCtrl', function ($scope, FIREBASE_BASE_URL, angularFire, $timeout, $location, $rootScope) {
+    var notes;
+    var url = FIREBASE_BASE_URL + '/notes';
+    var ref = new Firebase(url);
     
     $scope.currentNote = null;
     $scope.newNote = {};
     $scope.orderBy = 'created';
     $scope.activeIndex = 0;
+    $scope.user = null;
     
+    var authClient = $rootScope.authClient = new FirebaseAuthClient(ref, function(error, user) {
+      if(!error && user) {
+        $scope.user = user;
+        notes = $scope.notes = angularFire(url, $scope, 'notes');
+        notes.then(function () {
+          $scope.loadNote();
+        });
+      }
+      else{
+        $location.path('/login');
+      }
+    });
+    
+    //
     $scope.loadNote = function (note) {
       if (!note){
         note = $scope.notes[$scope.notes.length-1];
@@ -33,7 +45,7 @@ angular.module('biblenotesApp')
         created: new Date(),
         modified: new Date(),
         title: '',
-        content: ''
+        content: '',
       });
       
       $scope.loadNote();
