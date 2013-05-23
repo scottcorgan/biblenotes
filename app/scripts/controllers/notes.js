@@ -12,18 +12,18 @@ angular.module('biblenotesApp')
     $scope.activeIndex = 0;
     $scope.user = null;
     
-    var authClient = $rootScope.authClient = new FirebaseAuthClient(ref, function(error, user) {
-      if(!error && user) {
-        $scope.user = user;
-        notes = $scope.notes = angularFire(url, $scope, 'notes');
-        notes.then(function () {
-          $scope.loadNote();
-        });
-      }
-      else{
-        $location.path('/login');
-      }
-    });
+    // var authClient = $rootScope.authClient = new FirebaseAuthClient(ref, function(error, user) {
+    //   if(!error && user) {
+    //     $scope.user = user;
+    //     notes = $scope.notes = angularFire(url, $scope, 'notes');
+    //     notes.then(function () {
+    //       $scope.loadNote();
+    //     });
+    //   }
+    //   else{
+    //     $location.path('/login');
+    //   }
+    // });
     
     //
     $scope.loadNote = function (note) {
