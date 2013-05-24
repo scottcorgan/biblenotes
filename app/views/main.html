@@ -3,8 +3,15 @@
   <section class="bar note-list">
     <div class="grid rows split50">
       <div class="bar content-header list-header">
-        Some List
-        <a href="" class="add pull-right" ng-click="composeNewNote()"><span class="icon-plus icon-white"></span></a>
+        <a href="" class="list" ng-click="showNotebookList()">
+          <!-- <i class="icon-list icon-white"></i> -->
+          <i class="flaticon solid paragraph-justify-1" style="color:#fff;font-size:16px"></i>
+        </a>
+        Some List title
+        <a href="" class="add" ng-click="composeNewNote()">
+          <!-- <span class="icon-edit icon-white"></span> -->
+          <i class="flaticon solid inbox-3" style="color:#fff;font-size:16px"></i>
+        </a>
       </div>
       <div class="content">
         <div class="search" ng-hide="notes.length == 0">
@@ -27,19 +34,10 @@
   </section>
   
   <section class="content note">
-    <div class="grid rows split50">
-      
-      <div class="bar content-header note-header">
-        <div ng-show="currentNote">
-          <input type="text" class="note-title" ng-model="currentNote.title" placeholder="Untitled Note..." tabindex="1"></input>
-        </div>
+      <div class="note-title">
+        <input type="text" ng-model="currentNote.title" placeholder="Untitled Note..." tabindex="1"></input>
       </div>
-      
-      <div class="content note-content">
-          <textarea id="note-taker" text-editor='currentNote.content' text-editor-change='textEditorChange(content, obj)'></textarea>              
-      </div>
-      
-    </div>
+      <textarea id="note-taker" text-editor='currentNote.content' text-editor-change='textEditorChange(content, obj)'></textarea>              
   </section>
   
 </div>

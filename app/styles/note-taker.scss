@@ -1,13 +1,13 @@
 .redactor_box{
   border:none;
-  height:100%;
+  height:calc(100% - 90px);
   position:relative;
   
   .redactor_editor{
-    height:calc(100% - 50px) !important;
+    height:100% !important;
     box-sizing:border-box;
     font-family:'Cousine', Helvetica !important;
-    padding:20px !important;
+    padding:40px 100px !important;
     overflow:auto;
     
     *{
@@ -17,17 +17,20 @@
   
   .redactor_toolbar{
     background:#fff;
-    border-color:$light-gray;
+    border:none;
     box-sizing:border-box;
+    display:none;
     height:50px !important;
+    left:450px;
     padding-left:10px !important;
+    position:fixed;
+    top:0;
     width:100%;
     
     li{
       box-sizing:border-box;
       height:100%;
       line-height:50px !important;
-      padding:0 4px;
       
       a{
         margin-top:13px;
@@ -42,7 +45,8 @@
     
     .redactor_separator{
       border-left:none;
-      border-right-color:$light-gray;
+      // border-right-color:$light-gray;
+      border:none;
       height:50px;
     }
   }

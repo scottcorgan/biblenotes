@@ -1,45 +1,61 @@
 'use strict';
-// .factory('User', function ($rootScope, $q, angularFire, FIREBASE_BASE_URL, safeApply) {
-angular.module('biblenotesApp').provider('User', function (FIREBASE_BASE_URL) {
-  
-  var defaultUserRef = new Firebase(FIREBASE_BASE_URL);
-  var authClient;
-  var nextRedirectTo = '/';
-  var previousRedirectTo;
-  var _user;
-  
-  //
-  var authorize = function () {
-    authClient = new FirebaseAuthClient(defaultUserRef, function(err, user) {
-      if(err || !user){
-        
-        if(err) {
-          alert('Invalid login credentials.');
-        }
-        
-        return window.location.hash = '/login';
-      }
-      
-      _user = user;
-      previousRedirectTo = nextRedirectTo;
-      nextRedirectTo = '/';
-      window.location.hash = previousRedirectTo;
-    });
-  };
-  
+
+angular.module('biblenotesApp').provider('User', function () {
   return {
-    authorize: authorize,
-    current: _user,
-    
-    $get: function ($rootScope, $q, angularFire, FIREBASE_BASE_URL, safeApply) {
-      return {
-        current: _user,
+    $get: function ($rootScope, $q, $location, angularFire, FIREBASE_BASE_URL, safeApply) {
+      var defaultUserRef = new Firebase(FIREBASE_BASE_URL);
+      var authClient;
+      var nextRedirectTo = '/';
+      var previousRedirectTo;
+      var scope = $rootScope.$new();
+      
+      // // Track our user authentication
+      // $rootScope.$on('$routeChangeStart', function () {
+      //   if(!User.current){
+      //     return $location.path('/login')
+      //   }
+      // });
+      
+      var User = {
+        current: undefined,
+        
+        on: function (evt, cb) {
+          scope.$on(evt, cb);
+        },
+        
+        authorize: function () {
+          authClient = new FirebaseAuthClient(defaultUserRef, function(err, user) {
+            if(err || !user){
+              if(err) {
+                // alert('Invalid login credentials.');
+                console.log("Invalid login credentials");
+              }
+              
+              safeApply(scope, function () {
+                User.current = undefined;
+                $location.path('/login');
+              });
+              
+              return scope.$broadcast('invalidLogin');
+            }
+            
+            previousRedirectTo = nextRedirectTo;
+            nextRedirectTo = '/';
+            safeApply(scope, function () {
+              User.current = user;
+              scope.$broadcast('authorized');
+              $location.path(previousRedirectTo);
+            });
+          });
+        },
         
         setNextRedirectTo: function (redirectTo) {
           nextRedirectTo = redirectTo;
         },
         
         login: function (username, password, rememberMe) {
+          scope.$broadcast('authorizing');
+          
           authClient.login('password', {
             email: username,
             password: password,
@@ -48,7 +64,12 @@ angular.module('biblenotesApp').provider('User', function (FIREBASE_BASE_URL) {
         },
         
         logout: function () {
-          authClient.logout();
+          var self = this;
+          
+          safeApply(scope, function () {
+            User.current = undefined;
+            authClient.logout();
+          });
         },
         
         create: function (username, password) {
@@ -56,6 +77,9 @@ angular.module('biblenotesApp').provider('User', function (FIREBASE_BASE_URL) {
           return deferred.promise;
         }
       };
+      
+      //
+      return User;
     }
   }
 });

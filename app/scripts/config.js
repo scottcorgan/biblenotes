@@ -1,7 +1,7 @@
-angular.module('biblenotesApp').config(function ($routeProvider, $locationProvider, UserProvider) {
+angular.module('biblenotesApp').config(function ($routeProvider, $locationProvider) {
   // $locationProvider.html5Mode(true);
   
-  UserProvider.authorize();
+  // UserProvider.authorize();
   
   //
   $routeProvider

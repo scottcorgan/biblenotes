@@ -8,5 +8,11 @@
     <input ng-model="password" type="password" class="input-block-level">
     <br><br>
     <input type="submit" class="btn primary" ng-disabled="loggingIn" value="{{submitValue}}">
+    <div ng-show="invalid">
+      <hr>
+      <div class="well">
+        <span style="color:red">Invalid username or password.</span>
+      </div>
+    </div>
   </form>
 </div>

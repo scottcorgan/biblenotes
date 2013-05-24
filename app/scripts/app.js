@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('biblenotesApp', ['firebase'])
-  .controller('AppCtrl', function ($scope, $location) {
-    $scope.location = $location;
+  .controller('AppCtrl', function ($rootScope, $scope, $location, User) {
+    User.authorize();
+    $scope.location = $location;    
   });  

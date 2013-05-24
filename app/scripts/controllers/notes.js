@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('biblenotesApp')
-  .controller('NotesCtrl', function ($scope, FIREBASE_BASE_URL, angularFire, $timeout, $location, $rootScope) {
+  .controller('NotesCtrl', function ($scope, FIREBASE_BASE_URL, angularFire, $timeout, $location, $rootScope, User) {
     var notes;
     var url = FIREBASE_BASE_URL + '/notes';
     var ref = new Firebase(url);
@@ -12,18 +12,10 @@ angular.module('biblenotesApp')
     $scope.activeIndex = 0;
     $scope.user = null;
     
-    // var authClient = $rootScope.authClient = new FirebaseAuthClient(ref, function(error, user) {
-    //   if(!error && user) {
-    //     $scope.user = user;
-    //     notes = $scope.notes = angularFire(url, $scope, 'notes');
-    //     notes.then(function () {
-    //       $scope.loadNote();
-    //     });
-    //   }
-    //   else{
-    //     $location.path('/login');
-    //   }
-    // });
+    User.setNextRedirectTo('/notes');
+    User.on('authorized', function () {
+      $scope.user = User.current;
+    });
     
     //
     $scope.loadNote = function (note) {
