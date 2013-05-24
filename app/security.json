@@ -1,0 +1,36 @@
+{
+  "rules": {
+    ".write": true,
+    ".read": true,
+    
+    "users": {
+      "$userid": {
+        ".write": "$userid == auth.id",
+        ".read": "$userid == auth.id",
+        "username": {
+          ".write": "!data.exists()"
+        },
+        "notes": {
+          "$note": {
+            ".write": "root.child('notes/' + $note + '/author').val() == auth.id"
+          }
+        }
+      }
+    },
+    
+    "notes": {
+      
+      "$note": {
+        ".read": "data.child('author').val() == auth.id",
+        ".write": "auth != null",
+        ".validate": "newData.hasChildren(['author', 'title'])",
+        "author": {
+          ".validate": "newData.val() == auth.id"
+        },
+        "title": {
+          ".validate": "newData.isString()"
+        }
+      }
+    }
+  }
+}

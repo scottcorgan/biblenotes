@@ -1,7 +1,8 @@
 $red: #e85959;
 $light-gray: rgba(0,0,0,0.05);
+$light-gray-on-black: rgba(255,255,255,0.1);
 
-@import 'icons/solid';
+@import 'icons/stroke';
 @import 'form-elements';
 @import 'login-form';
 @import 'note-taker';
@@ -14,8 +15,13 @@ $light-gray: rgba(0,0,0,0.05);
 body,
 html{
   color:#333;
+  font-family: 'Open Sans', Helvetica, Arial;
   height:100%;
   width:100%;
+}
+
+input{
+  font-family: 'Open Sans', Helvetica, Arial;
 }
 
 .btn{
@@ -35,110 +41,7 @@ html{
   }
 }
 
-.content-header{
-  background:#222;
-  color:#fff;
-  padding:0 20px;
-  position:relative;
-}
-
-.note-list{
-  .list-header{
-    // text-align:center;
-    padding:0 0 0 20px;
-    position:relative;
-    
-    .list,
-    .add{
-      display:inline-block;
-      height:100%;
-      opacity:0.9;
-      position:absolute;
-      text-align:center;
-      top:0;
-      width:50px;
-      
-      &:hover{
-        opacity:1;
-      }
-      
-      &:active{
-        opacity:0.9;
-      }
-    }
-    
-    .list{
-      left:0;
-    }
-    
-    .add{
-      right:0;
-    }
-  }
-
-  .content{
-    border-right:1px solid $light-gray;
-    border-left:1px solid $light-gray;
-  }
-  
-  .search{
-    border-bottom:1px solid $light-gray;
-    
-    input{
-      border:none;
-      height:49px;
-      margin: 0;
-      padding:0 20px;
-      width:100%;
-      
-      &:focus{
-        outline: none;
-        box-shadow:none;
-      }
-    }
-  }
-  
-  .list{
-    border-bottom:1px solid $light-gray;
-    margin:0;
-    padding:0;
-    
-    &.empty{
-      border-bottom:none;
-    }
-    
-    li{
-      border-top:1px solid $light-gray;
-      cursor:pointer;
-      padding:10px 20px;
-      
-      &:first-child{
-        border-top:none;
-      }
-      
-      &:hover{
-        background:$light-gray;
-      }
-      
-      &.active{
-        background:#f7f7f7;
-      }
-      
-      
-    }
-    
-    h3{
-      font-size:14px;
-      line-height:21px;
-      margin:0;
-    }
-    
-    small{
-      color:#888;
-      font-size:12px;
-    }
-  }
-}
+@import 'note-list';
 
 .list-emtpy{
   padding:20px;
@@ -188,6 +91,7 @@ html{
       border-bottom:1px solid $light-gray;
       background:none;
       font-family:'Cousine', Helvetica;
+      font-weight:700;
       height:100%;
       line-height:normal;
       margin:0;

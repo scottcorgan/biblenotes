@@ -1,18 +1,38 @@
 <div class="grid columns split350">
   
   <section class="bar note-list">
-    <div class="grid rows split50">
+    <div class="grid rows split60">
       <div class="bar content-header list-header">
-        <!-- <a href="" class="list" ng-click="showNotebookList()">
-          <i class="flaticon solid paragraph-justify-1" style="color:#fff;font-size:16px"></i>
-        </a> -->
-        Some List title
+        
+        <div class="list-items">
+          <span class="list-title" ng-click="showNotebookList = !showNotebookList">{{currentNotebook.title}}</span>
+          <ul ng-show="showNotebookList">
+            
+            <li ng-click="" class="new-list">
+              <form ng-submit="createNewList()">
+                <input type="text" ng-model="newListTitle" placeholder="New List ...">
+                <a href="" ng-show="newListTitle" ng-click="createNewList()">
+                  <i class="flaticon stroke checkmark-3"></i>
+                </a>
+              </form>
+            </li>
+            
+            <li ng-repeat="notebook in Notebook.all() | orderBy:orderNotebooksBy" ng-click="setCurrentNotebook(notebook)" ng-class="{active: notebook == currentNotebook}">
+              {{notebook.title}}
+            </li>
+          </ul>
+        </div>
+        
+        <a href="" class="list" ng-click="showNotebookList = !showNotebookList">
+          <i class="flaticon stroke down-2" ng-hide="showNotebookList"></i>
+          <i class="flaticon stroke up-2" ng-show="showNotebookList"></i>
+        </a>
         <a href="" class="add" ng-click="composeNewNote()">
-          <i class="flaticon solid inbox-3" style="color:#fff;font-size:16px"></i>
+          <i class="flaticon stroke compose-2"></i>
         </a>
       </div>
       <div class="content">
-        <div class="search" ng-hide="notes.length == 0">
+        <div class="search" ng-hide="notes.length == 0 || notes == undefined">
           <input type="text" placeholder="Search..." ng-model="noteListFilter">
         </div>
         <ul class="list" ng-hide="notes.length == 0">
@@ -39,3 +59,5 @@
   </section>
   
 </div>
+
+<!-- <pre>{{Notebook.all() | json}}</pre> -->

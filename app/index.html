@@ -9,36 +9,34 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="components/molten/molten/molten.css">
     <link href='http://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'> -->
     <link rel="stylesheet" href="http://imperavi.com/js/redactor/redactor.css"/>
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    
   </head>
+  
   <body ng-app="biblenotesApp">
-    <!--[if lt IE 7]>
-      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-    <![endif]-->
-
-    <!--[if lt IE 9]>
-      <script src="components/es5-shim/es5-shim.js"></script>
-      <script src="components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-
+    
     <!-- Add your site or application content here -->
     <div class="grid columns split100" ng-class="{collapse: location.path() == '/login'}" ng-controller="AppCtrl">
       <div class="bar main-nav">
         <br>
         <center>
           <a href="/#/notes">
-            <i class="flaticon solid notebook-2" style="color:#222;font-size:16px;"></i>
+            <i class="flaticon stroke menu-list-1" style="color:#222;font-size:16px;"></i>
           </a>
           <br><br>
           <a href="/#/bible">
-            <i class="flaticon solid open-book-2" style="font-size:16px;color:#222"></i>
+            <i class="flaticon stroke open-book-3" style="font-size:16px;color:#222"></i>
           </a>
         </center>
         
@@ -70,6 +68,8 @@
     <script src="scripts/services/Notes.js"></script>
     <script src="scripts/services/safeApply.js"></script>
     <script src="scripts/controllers/Logout.js"></script>
+    <script src="scripts/services/Notebook.js"></script>
+    <script src="scripts/directives/onKeyup.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

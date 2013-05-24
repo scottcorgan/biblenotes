@@ -1,16 +1,24 @@
 angular.module('biblenotesApp').config(function ($routeProvider, $locationProvider) {
   // $locationProvider.html5Mode(true);
-  
-  // UserProvider.authorize();
-  
-  //
+
   $routeProvider
     .when('/', {
       templateUrl: 'views/home.html',
-      controller: function ($scope, User, $location) {
+      controller: function ($scope, User, $location, Notebook) {
         $scope.logout = function () {
           User.logout();
         };
+        
+        
+        $scope.Notebook = Notebook;
+        
+        
+        // $scope.$watch(function () { return Notebook.all(); }, function (data) {
+        //   $scope.notebooks = Notebook.all();
+        // });
+        
+        
+        
         // User.authorize().then(function (user) {
         //   console.log('Success:', user);
         // }, function (err) {

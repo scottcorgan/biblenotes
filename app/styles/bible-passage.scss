@@ -1,5 +1,8 @@
 .bible-passage{
-  font:16px/26px 'Cousine', Helvetica;
+  color:#555;
+  font:16px/30px 'Open Sans', Helvetica;
+  // font:16px/30px 'Montserrat', Helvetica;
+  // font:16px/26px 'Cousine', Helvetica;
   height:100%;
   margin:0;
   width:100%;
@@ -16,6 +19,7 @@
     overflow:auto;
     
     h3{
+      color:#333;
       padding:0 0 30px;
     }
     
