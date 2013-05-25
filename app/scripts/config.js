@@ -10,9 +10,6 @@ angular.module('biblenotesApp').config(function ($routeProvider, $locationProvid
         };
         
         
-        $scope.Notebook = Notebook;
-        
-        
         // $scope.$watch(function () { return Notebook.all(); }, function (data) {
         //   $scope.notebooks = Notebook.all();
         // });

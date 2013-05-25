@@ -1,39 +1,35 @@
 'use strict';
 
 angular.module('biblenotesApp')
-  .controller('NotesCtrl', function ($scope, FIREBASE_BASE_URL, angularFire, $timeout, $location, $rootScope, User, Notebook) {
-    var notes;
-    var url = FIREBASE_BASE_URL + '/notes';
-    var ref = new Firebase(url);
-    
+  .controller('NotesCtrl', function ($scope, User, Notebook, Note) {
     $scope.currentNote = null;
     $scope.newNote = {};
     $scope.orderBy = 'created';
     $scope.activeIndex = 0;
+    $scope.activeNotebookIdx;
     $scope.user = null;
     $scope.Notebook = Notebook;
+    $scope.Note = Note;
     $scope.orderNotebooksBy = 'title';
     
-    //
+    //////////////// Notebooks //////////////////
     User.setNextRedirectTo('/notes');
     User.on('authorized', function () {
       $scope.user = User.current;
     });
     
-    $scope.setCurrentNotebook = function (notebook) {
+    $scope.setCurrentNotebook = function (notebook, idx) {
+      $scope.activeNotebookIdx = idx;
       $scope.closeNotebookList();
-      $scope.currentNotebook = notebook;
+      $scope.Notebook.current = notebook;
     };
     
     $scope.createNewList = function () {
-      Notebook.create({ title: $scope.newListTitle }, function (status, data) {
-        if (status == 'error') {
-          return console.log('Error:', err);
-        }
-        
-        $scope.currentNotebook = Notebook.findById(data);
+      var notebook = $scope.Notebook.create({
+        title: $scope.newListTitle
       });
       
+      $scope.Notebook.current = notebook;
       $scope.closeNotebookList();
       $scope.newListTitle = null;
     };
@@ -42,7 +38,9 @@ angular.module('biblenotesApp')
       $scope.showNotebookList = false;
     }
     
-    //
+    
+    
+    ////////////// Notes //////////////////////
     $scope.loadNote = function (note) {
       if (!note){
         note = $scope.notes[$scope.notes.length-1];
@@ -58,14 +56,11 @@ angular.module('biblenotesApp')
     };
     
     $scope.composeNewNote = function () {
-      var idx = $scope.notes.push({
-        created: new Date(),
-        modified: new Date(),
+      var note = $scope.Note.create({
         title: '',
         content: '',
       });
-      
-      $scope.loadNote();
+      // $scope.loadNote();
     };
     
     $scope.removeNote = function (note) {
