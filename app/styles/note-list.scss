@@ -175,7 +175,7 @@
   }
   
   .list{
-    border-bottom:1px solid $light-gray;
+    // border-bottom:1px solid $light-gray;
     margin:0;
     padding:0;
     
@@ -184,20 +184,26 @@
     }
     
     li{
-      border-top:1px solid $light-gray;
+      // border-top:1px solid $light-gray;
       cursor:pointer;
-      padding:10px 20px;
+      padding:15px 20px;
       
       &:first-child{
         border-top:none;
       }
       
       &:hover{
-        background:$light-gray;
+        background:$highlight-on-white;
       }
       
       &.active{
-        background:#f7f7f7;
+        // background:#fff;
+        border-right:5px solid $light-gray;
+        cursor:default;
+        
+        h3{
+          color:$red
+        }
       }
       
       
@@ -207,10 +213,11 @@
       font-size:14px;
       line-height:21px;
       margin:0;
+      font-weight:500;
     }
     
     small{
-      color:#888;
+      color:rgba(0,0,0,0.3);
       font-size:12px;
     }
   }

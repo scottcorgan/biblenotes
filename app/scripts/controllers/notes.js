@@ -53,7 +53,7 @@ angular.module('biblenotesApp')
       }
       
       $scope.Note.current = note;
-      // $scope.currentNote = note;
+      $scope.currentNote = note;
     };
     
     $scope.isActiveNote = function (note) {
@@ -83,9 +83,4 @@ angular.module('biblenotesApp')
     $scope.textEditorChange = function (content, obj) {
       // This is where we will do the scripture detection
     };
-    
-    
-    $scope.focusTitle = function () {
-      $scope.titleFocus = !$scope.titleFocus
-    }
   });

@@ -5,7 +5,7 @@
       <div class="bar content-header list-header">
         
         <div class="list-items">
-          <span class="list-title" ng-click="showNotebookList = !showNotebookList">{{Notebook.current.title}}</span>
+          <span class="list-title" ng-click="showNotebookList = !showNotebookList" closeable="showNotebookList">{{Notebook.current.title}}</span>
           
           <ul ng-show="showNotebookList">
             
@@ -13,7 +13,7 @@
               <form ng-submit="createNewList()">
                 <input type="text" ng-model="newListTitle" placeholder="New List ...">
                 <a href="" ng-show="newListTitle" ng-click="createNewList()">
-                  <i class="flaticon stroke checkmark-3"></i>
+                  <i class="flaticon stroke plus-3"></i>
                 </a>
               </form>
             </li>

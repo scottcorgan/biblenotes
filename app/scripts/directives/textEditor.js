@@ -24,13 +24,14 @@ angular.module('biblenotesApp')
         
         element.redactor({
           // source: false,
+          linebreaks: true,
           focus: false,
           tabindex: 2,
           autoresize: true,
           buttons: ['formatting', '|', 'bold', 'italic', 'deleted', '|', 'alignment', '|',
                     'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
                     'image', 'video', 'file', 'table', 'link', '|',
-                    'fontcolor', 'backcolor', 'horizontalrule', 'html',  '|'],
+                    'fontcolor', 'backcolor', 'horizontalrule', '|'],
           changeCallback: function (content) {
             if (content) {
               scope.textEditorChange({content: content, obj: element});
