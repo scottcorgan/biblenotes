@@ -21,6 +21,7 @@
       .list-title{
         display:inline-block;
         padding:0 0 0 20px;
+        min-height:100%;
         width:100%;
       }
       
@@ -37,9 +38,14 @@
         
         li{
           padding:20px 20px;
+          position:relative;
           
           &:hover{
             background-color:$light-gray-on-black;
+            
+            .settings{
+              display:block;
+            }
           }
           
           &.active{
@@ -49,6 +55,22 @@
             &:hover{
               background:none;
               cursor:default;
+            }
+            
+          }
+          
+          .settings{
+            display:none;
+            line-height:60px;
+            height:100%;
+            position:absolute;
+            right:0;
+            text-align:center;
+            top:0;
+            width:61px;
+            
+            &:hover{
+              background:$light-gray-on-black;
             }
           }
           

@@ -10,13 +10,16 @@ angular.module('biblenotesApp')
       var notebooks = Notebook.all();
       
       if (notebooks) {
-        scope.currentNotebookIdx = notebooks.indexOf(Notebook.current);
+        scope.currentNotebookId = Notebook.current.$id;
+        scope.current = null;
         
-        if (scope[scope.currentNotebookIdx]) {
+        // Need to set the current notebook on the user
+        
+        if (scope[scope.currentNotebookId]) {
           return;
         }
-        scope[scope.currentNotebookIdx] = scope[scope.currentNotebookIdx] ||$rootScope.$new();
-        scope[scope.currentNotebookIdx].promise = angularFire(FIREBASE_BASE_URL + '/notes/' + user.id + '/' + scope.currentNotebookIdx, scope[scope.currentNotebookIdx], 'notes', []);
+        scope[scope.currentNotebookId] = scope[scope.currentNotebookId] || $rootScope.$new();
+        scope[scope.currentNotebookId].promise = angularFire(FIREBASE_BASE_URL + '/notes/' + user.id + '/' + scope.currentNotebookId, scope[scope.currentNotebookId], 'notes', []);
       }
     });
     
@@ -30,12 +33,12 @@ angular.module('biblenotesApp')
     });
     
     scope.all = function () {
-      scope[scope.currentNotebookIdx] = scope[scope.currentNotebookIdx] || $rootScope.$new();
-      return scope[scope.currentNotebookIdx].notes;
+      scope[scope.currentNotebookId] = scope[scope.currentNotebookId] || $rootScope.$new();
+      return scope[scope.currentNotebookId].notes;
     };
     
     scope.create = function (data) {
-      var noteId = scope[scope.currentNotebookIdx].notes.push({
+      var noteId = scope[scope.currentNotebookId].notes.push({
         title: data.title,
         content: data.content,
         created: new Date(),
@@ -46,10 +49,10 @@ angular.module('biblenotesApp')
     };
     
     scope.findById = function (id) {
-      return scope[scope.currentNotebookIdx].notes[id-1];
+      return scope[scope.currentNotebookId].notes[id-1];
     }
     
-    scope.current = {}
+    scope.current = null
     
     //
     return scope;

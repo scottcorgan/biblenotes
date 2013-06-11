@@ -75,6 +75,7 @@ input{
         width:1px;
       }
     }
+    
   }
   
   .note-content{
@@ -82,16 +83,17 @@ input{
   }
   
   .note-title{
-    height:70px;
+    height:30px;
     padding:0 100px;
-    margin-top:20px;
+    margin-top:120px;
     
     input{
       border:none;
-      border-bottom:1px solid $light-gray;
+      // border-bottom:1px solid $light-gray;
       background:none;
-      font-family:'Cousine', Helvetica;
-      font-weight:700;
+      color:rgba(0,0,0,0.4);
+      font:400 16px/normal 'Cousine', Helvetica;
+      // font-weight:700;
       height:100%;
       line-height:normal;
       margin:0;

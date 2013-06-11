@@ -18,6 +18,12 @@ angular.module('biblenotesApp')
       $scope.user = User.current;
     });
     
+    $scope.$watch(function () { return $scope.Notebook.all() }, function (notebook) {
+      if(notebook && $scope.user) {
+        // $scope.Notebook.current = $scope.Notebook.findById('-IvOG9vJ3_dxRPmiibDK');
+      }
+    });
+    
     $scope.setCurrentNotebook = function (notebook, idx) {
       $scope.activeNotebookIdx = idx;
       $scope.closeNotebookList();
@@ -25,13 +31,13 @@ angular.module('biblenotesApp')
     };
     
     $scope.createNewList = function () {
-      var notebook = $scope.Notebook.create({
+      $scope.Notebook.create({
         title: $scope.newListTitle
+      }, function (notebook) {
+        $scope.Notebook.current = notebook;
+        $scope.closeNotebookList();
+        $scope.newListTitle = null;
       });
-      
-      $scope.Notebook.current = notebook;
-      $scope.closeNotebookList();
-      $scope.newListTitle = null;
     };
     
     $scope.closeNotebookList = function () {
@@ -46,11 +52,12 @@ angular.module('biblenotesApp')
         note = $scope.notes[$scope.notes.length-1];
       }
       
-      $scope.currentNote = note;
+      $scope.Note.current = note;
+      // $scope.currentNote = note;
     };
     
     $scope.isActiveNote = function (note) {
-      if(note === $scope.currentNote){
+      if(note === $scope.Note.current){
         return 'active';
       }
     };
@@ -70,10 +77,15 @@ angular.module('biblenotesApp')
       
       var idx = $scope.notes.indexOf(note);
       $scope.notes.splice(idx, 1);
-      $scope.currentNote = null;
+      $scope.Note.current = null;
     };
     
     $scope.textEditorChange = function (content, obj) {
       // This is where we will do the scripture detection
     };
+    
+    
+    $scope.focusTitle = function () {
+      $scope.titleFocus = !$scope.titleFocus
+    }
   });

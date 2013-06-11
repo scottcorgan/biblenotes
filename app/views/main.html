@@ -6,6 +6,7 @@
         
         <div class="list-items">
           <span class="list-title" ng-click="showNotebookList = !showNotebookList">{{Notebook.current.title}}</span>
+          
           <ul ng-show="showNotebookList">
             
             <li ng-click="" class="new-list">
@@ -19,6 +20,9 @@
             
             <li ng-repeat="notebook in Notebook.all() | orderBy:orderNotebooksBy" ng-click="setCurrentNotebook(notebook)" ng-class="{active: notebook == Notebook.current}">
               {{notebook.title}}
+              <a href="" class='settings' ng-click="showModalHereForSettingsAndSharingAndEditing">
+                <i class="flaticon stroke settings-1"></i>
+              </a>
             </li>
           </ul>
         </div>
@@ -32,7 +36,7 @@
         </a>
       </div>
       <div class="content">
-        <div class="search" ng-hide="Notes.all().length == 0 || Notes.all() != undefined">
+        <div class="search" ng-hide="Note.all().length == 0 || Note.all() == undefined">
           <input type="text" placeholder="Search..." ng-model="noteListFilter">
         </div>
         <ul class="list" ng-hide="notes.length == 0">
@@ -40,22 +44,28 @@
             <h3>{{note.title}}</h3>
             <small>tags here</small>
           </li>
-          <li ng-show="Note.all().length == undefined">
+          <li ng-show="Note.all() == undefined">
             Loading ...
           </li>
         </ul>
-        <div class="list-emtpy" ng-show="notes.length == 0">
+        <div class="list-emtpy" ng-show="Note.all().length == 0">
           <a href="" class="btn primary" ng-click="composeNewNote()"><i class="icon-plus icon-white"></i> Create a Note</a>
         </div>
       </div>
     </div>
   </section>
   
-  <section class="content note">
+  <section class="content note" ng-class="{'focus-note-title': titleFocus}">
+    <div ng-show="Note.current">
       <div class="note-title">
-        <input type="text" ng-model="currentNote.title" placeholder="Untitled Note..." tabindex="1"></input>
+        <input type="text" ng-model="Note.current.title" placeholder="Untitled Note..." tabindex="1"></input>
+        {{titleFocus}}
       </div>
-      <textarea id="note-taker" text-editor='currentNote.content' text-editor-change='textEditorChange(content, obj)'></textarea>              
+      <textarea id="note-taker" text-editor='Note.current.content' text-editor-change='textEditorChange(content, obj)'></textarea>              
+    </div>
+    <div ng-hide="Note.current">
+      (Create a new Note)
+    </div>
   </section>
   
 </div>

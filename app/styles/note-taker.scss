@@ -1,13 +1,13 @@
 .redactor_box{
   border:none;
-  height:calc(100% - 90px);
+  // height:calc(100% - 10px);
   position:relative;
   
   .redactor_editor{
     height:100% !important;
     box-sizing:border-box;
     font-family:'Cousine', Helvetica !important;
-    padding:40px 100px !important;
+    padding:60px 100px !important;
     overflow:auto;
     
     *{
@@ -18,22 +18,25 @@
   .redactor_toolbar{
     background:#fff;
     border:none;
+    border-bottom:1px solid $light-gray;
     box-sizing:border-box;
-    display:none;
-    height:50px !important;
+    // display:none;
+    height:60px !important;
     left:450px;
     padding-left:10px !important;
     position:fixed;
     top:0;
     width:100%;
+    z-index:2;
     
     li{
       box-sizing:border-box;
       height:100%;
-      line-height:50px !important;
+      line-height:60px !important;
+      padding:0 5px;
       
       a{
-        margin-top:13px;
+        margin-top:18px;
         
         &.redactor_act,
         &:hover{
@@ -45,9 +48,9 @@
     
     .redactor_separator{
       border-left:none;
-      // border-right-color:$light-gray;
-      border:none;
-      height:50px;
+      border-right-color:$light-gray;
+      // border:none;
+      height:60px;
     }
   }
 }

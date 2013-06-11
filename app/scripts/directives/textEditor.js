@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('biblenotesApp')
-  .directive('textEditor', function ($timeout) {
+  .directive('textEditor', function ($timeout, safeApply) {
     return {
       restrict: 'A',
       scope:{
@@ -10,35 +10,32 @@ angular.module('biblenotesApp')
       },
       link: function postLink(scope, element, attrs) {
         var applied = false;
-        var save = _.throttle(function (obj, evt) {
-          console.log('saved');
-          scope.$apply(function () {
+        var save = function (content) {
+          safeApply(scope, function () {
             applied = true;
-            scope.model = element.getCode();
+            scope.model = content
             
             // Reset the applied flag
             $timeout(function () {
               applied = false;
             }, 0);
           });
-        }, 1000);
+        }
         
         element.redactor({
           // source: false,
           focus: false,
           tabindex: 2,
-          autoresize: false,
+          autoresize: true,
           buttons: ['formatting', '|', 'bold', 'italic', 'deleted', '|', 'alignment', '|',
                     'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
                     'image', 'video', 'file', 'table', 'link', '|',
-                    'fontcolor', 'backcolor', 'horizontalrule', 'html', ],
-          execCommandCallback: function (obj, evt) {
-            scope.textEditorChange({content: element.getCode(), obj: obj});
-            save(obj, evt);
-          },
-          keyupCallback: function (obj, evt) {
-            scope.textEditorChange({content: element.getCode(), obj: obj});
-            save(obj, evt);
+                    'fontcolor', 'backcolor', 'horizontalrule', 'html',  '|'],
+          changeCallback: function (content) {
+            if (content) {
+              scope.textEditorChange({content: content, obj: element});
+              save(content);
+            }
           }
         });
         
@@ -49,7 +46,7 @@ angular.module('biblenotesApp')
             return;
           }
           
-          element.setCode(content);
+          element.redactor('set', content);
         });
       }
     };
