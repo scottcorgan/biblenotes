@@ -7,7 +7,7 @@
     height:100% !important;
     box-sizing:border-box;
     font-family:'Cousine', Helvetica !important;
-    padding:60px 100px !important;
+    padding:50px 100px !important;
     overflow:auto;
     
     *{
@@ -20,8 +20,7 @@
     border:none;
     border-bottom:1px solid $light-gray;
     box-sizing:border-box;
-    // display:none;
-    height:60px !important;
+    height:50px !important;
     left:450px;
     padding-left:10px !important;
     position:fixed;
@@ -36,7 +35,7 @@
       padding:0 5px;
       
       a{
-        margin-top:18px;
+        margin-top:13px;
         
         &.redactor_act,
         &:hover{
@@ -49,8 +48,7 @@
     .redactor_separator{
       border-left:none;
       border-right-color:$light-gray;
-      // border:none;
-      height:60px;
+      height:50px;
     }
   }
 }

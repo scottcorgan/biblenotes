@@ -1,7 +1,9 @@
 $red: #e85959;
+$primary: #2795e0;
 $light-gray: rgba(0,0,0,0.05);
 $light-gray-on-black: rgba(255,255,255,0.1);
 $highlight-on-white: rgba(0,0,0,0.03);
+$text-dark: #29343B;
 
 @import 'icons/stroke';
 @import 'form-elements';
@@ -15,7 +17,7 @@ $highlight-on-white: rgba(0,0,0,0.03);
 
 body,
 html{
-  color:#333;
+  color:$text-dark;
   font-family: 'Open Sans', Helvetica, Arial;
   height:100%;
   width:100%;
@@ -37,11 +39,13 @@ input{
   }
   
   &.primary{
-    background:$red;
+    background:$primary;
     color:#fff;
   }
 }
 
+
+@import 'main-nav';
 @import 'note-list';
 
 .list-emtpy{
@@ -86,7 +90,7 @@ input{
   .note-title{
     height:30px;
     padding:0 100px;
-    margin-top:120px;
+    margin-top:110px;
     
     input{
       border:none;
