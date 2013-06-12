@@ -30,19 +30,17 @@
     
     <!-- Add your site or application content here -->
     
-    <div class="grid columns split100" ng-class="{collapse: location.path() == '/login'}" ng-controller="AppCtrl">
+    <div class="grid columns split200" ng-class="{collapse: location.path() == '/login'}" ng-controller="AppCtrl">
       <div class="bar main-nav">
-        <br>
-        <center>
-          <a href="/#/notes">
-            <i class="flaticon stroke menu-list-1" style="color:rgba(255,255,255,0.9);font-size:16px;"></i>
-          </a>
-          <br><br>
-          <a href="/#/bible">
-            <i class="flaticon stroke open-book-3" style="font-size:16px;color:rgba(255,255,255,0.2)"></i>
-          </a>
-        </center>
-        
+        <a href="/#/notes">
+          <!-- <i class="flaticon stroke menu-list-1" style="color:rgba(255,255,255,0.9);font-size:16px;"></i> -->
+          Notes
+        </a>
+        <br><br>
+        <a href="/#/bible">
+          Bible
+          <!-- <i class="flaticon stroke open-book-3" style="font-size:16px;color:rgba(255,255,255,0.2)"></i> -->
+        </a>
       </div>
       <div class="content" ng-view></div>
     </div>

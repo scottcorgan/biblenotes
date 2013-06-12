@@ -58,7 +58,7 @@
   <section class="content note" ng-class="{'focus-note-title': titleFocus}">
     <div ng-show="Note.current">
       <div class="note-title">
-        <input type="text" ng-model="Note.current.title" placeholder="Untitled Note..." tabindex="1"></input>
+        <input type="text" ng-model="Note.current.title" placeholder="Untitled Note..." tabindex="1">
         {{titleFocus}}
       </div>
       <textarea id="note-taker" text-editor='Note.current.content' text-editor-change='textEditorChange(content, obj)'></textarea>              

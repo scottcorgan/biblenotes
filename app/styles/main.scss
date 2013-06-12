@@ -88,16 +88,17 @@ input{
   }
   
   .note-title{
-    height:30px;
-    padding:0 100px;
-    margin-top:110px;
+    // height:30px;
+    padding:0 80px;
+    margin-top:100px;
     
     input{
       border:none;
       // border-bottom:1px solid $light-gray;
       background:none;
       color:rgba(0,0,0,0.4);
-      font:400 16px/normal 'Cousine', Helvetica;
+      // font:400 16px/normal 'Cousine', Helvetica;
+      font:400 18px/normal 'Open Sans', Helvetica;
       // font-weight:700;
       height:100%;
       line-height:normal;
